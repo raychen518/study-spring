@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="beanA"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanA">
+		<property name="field1" value="abc" />
+		<property name="field2" value="def" />
+	</bean>
+
+	<bean id="beanA1"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanA1"
+		parent="beanA">
+		<property name="field3" value="ghi1" />
+	</bean>
+
+	<bean id="beanA2"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanA2"
+		parent="beanA">
+		<property name="field3" value="ghi2" />
+	</bean>
+
+	<bean id="beanA3"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanA3"
+		parent="beanA">
+		<property name="field2" value="def-changed" />
+		<property name="field3" value="ghi3" />
+	</bean>
+
+	<bean id="beanB"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanB"
+		init-method="initialize" destroy-method="destroy" />
+
+	<bean id="beanB1"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanB1"
+		parent="beanB" />
+
+	<bean id="beanC"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanC"
+		scope="prototype" />
+
+	<bean id="beanC1"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanC1"
+		parent="beanC" />
+
+	<bean id="beanC2"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanC2"
+		parent="beanC" scope="singleton" />
+
+	<bean id="beanD" abstract="true">
+		<property name="field1" value="abc" />
+		<property name="field2" value="def" />
+	</bean>
+
+	<bean id="beanD1"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanD1"
+		parent="beanD">
+		<property name="field3" value="ghi1" />
+	</bean>
+
+	<bean id="beanD2"
+		class="com.raychen518.study.spring.core.ioccontainer.beandefinitioninheritance.BeanD2"
+		parent="beanD">
+		<property name="field3" value="ghi2" />
+	</bean>
+</beans>

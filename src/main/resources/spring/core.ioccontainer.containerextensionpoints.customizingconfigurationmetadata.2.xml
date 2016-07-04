@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean
+		class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
+		<property name="locations"
+			value="classpath:core.ioccontainer.containerextensionpoints.customizingconfigurationmetadata.2-misc.properties" />
+	</bean>
+
+	<bean id="someBean1"
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizingconfigurationmetadata.case2.SomeBean">
+		<property name="field1" value="123" />
+		<property name="field2" value="abc" />
+		<property name="field3" value="true" />
+	</bean>
+
+	<bean id="someBean2"
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizingconfigurationmetadata.case2.SomeBean">
+		<property name="field1" value="999" />
+		<property name="field2" value="def" />
+		<property name="field3" value="false" />
+	</bean>
+</beans>

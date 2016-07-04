@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- To make Spring aware of common Java annotations, -->
+	<!-- the CommonAnnotationBeanPostProcessor bean should be registered. -->
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+
+	<bean id="beanA"
+		class="com.raychen518.study.spring.core.ioccontainer.customizingbeannature.initializationcallbacks.BeanA2">
+		<property name="field1" value="123" />
+	</bean>
+</beans>

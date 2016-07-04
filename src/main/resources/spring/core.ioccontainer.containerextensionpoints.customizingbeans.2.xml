@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:annotation-config />
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizingbeans.case2.BeanA"
+		init-method="startUp" />
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizingbeans.case2.BeanB"
+		init-method="startUp" />
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizingbeans.case2.BeanPostProcessor1">
+		<property name="order" value="1" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizingbeans.case2.BeanPostProcessor2">
+		<property name="order" value="2" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizingbeans.case2.BeanPostProcessor3">
+		<property name="order" value="3" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizingbeans.case2.BeanPostProcessor4">
+		<property name="order" value="0" />
+	</bean>
+</beans>

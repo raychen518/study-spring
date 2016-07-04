@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- By using the depends-on attribute, -->
+	<!-- dependencies are forced to initialize first. -->
+	<!-- Valid delimiters for dependencies in the depends-on attribute -->
+	<!-- are commas, whitespace and semicolons. -->
+	<bean id="beanA"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.dependson.BeanA"
+		depends-on="beanB, beanC">
+		<property name="field1" ref="beanB" />
+		<property name="field2" ref="beanC" />
+	</bean>
+
+	<bean id="beanB"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.dependson.BeanB" />
+	<bean id="beanC"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.dependson.BeanC" />
+</beans>

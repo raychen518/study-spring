@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Declare a package to scan for beans. -->
+	<context:component-scan
+		base-package="com.raychen518.study.spring.core.ioccontainer.javabasedcontainerconfiguration.composingconfigurations.combiningjavaandxmlconfiguration.xmlcentric.package1" />
+
+	<!-- Declare a bean (as a @Configuration class). -->
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.javabasedcontainerconfiguration.composingconfigurations.combiningjavaandxmlconfiguration.xmlcentric.BeanConfiguration" />
+
+	<!-- Declare a bean. -->
+	<bean id="beanC1"
+		class="com.raychen518.study.spring.core.ioccontainer.javabasedcontainerconfiguration.composingconfigurations.combiningjavaandxmlconfiguration.xmlcentric.BeanC1" />
+
+	<!-- Declare a bean with dependencies injected. -->
+	<bean id="beanC3"
+		class="com.raychen518.study.spring.core.ioccontainer.javabasedcontainerconfiguration.composingconfigurations.combiningjavaandxmlconfiguration.xmlcentric.BeanC3">
+		<property name="intValue" value="123" />
+		<property name="stringValue" value="abc" />
+		<property name="booleanValue" value="true" />
+		<property name="beanC1Value" ref="beanC1" />
+	</bean>
+
+	<!-- Declare a bean with dependencies injected (using property placeholders). -->
+	<bean id="beanC4"
+		class="com.raychen518.study.spring.core.ioccontainer.javabasedcontainerconfiguration.composingconfigurations.combiningjavaandxmlconfiguration.xmlcentric.BeanC4">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations"
+			value="classpath:core.ioccontainer.javabasedcontainerconfiguration.composingconfigurations.combiningjavaandxmlconfiguration.jdbc.properties" />
+	</bean>
+
+</beans>

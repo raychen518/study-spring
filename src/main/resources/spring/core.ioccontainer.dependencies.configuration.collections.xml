@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="someBean"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.collections.SomeBean">
+		<!-- Result in the invocation of the method "setSomeProperties(java.util.Properties)". -->
+		<property name="someProperties">
+			<props>
+				<prop key="propertyKeyA">propertyValueA</prop>
+				<prop key="propertyKeyB">propertyValueB</prop>
+				<prop key="propertyKeyC">propertyValueC</prop>
+			</props>
+		</property>
+
+		<!-- Result in the invocation of the method "setSomeList(java.util.List)". -->
+		<property name="someList">
+			<list>
+				<value>listValueA</value>
+				<value>listValueB</value>
+				<ref bean="beanForList" />
+			</list>
+		</property>
+
+		<!-- Result in the invocation of the method "setSomeMap(java.util.Map)". -->
+		<property name="someMap">
+			<map>
+				<entry key="mapKeyA" value="mapValueA" />
+				<entry key="mapKeyB" value="mapValueB" />
+				<entry key="mapKeyC" value-ref="beanForMap" />
+			</map>
+		</property>
+
+		<!-- Result in the invocation of the method "setSomeSet(java.util.Set)". -->
+		<property name="someSet">
+			<set>
+				<value>setValueA</value>
+				<value>setValueB</value>
+				<ref bean="beanForSet" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="beanForList"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.collections.BeanForList" />
+	<bean id="beanForMap"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.collections.BeanForMap" />
+	<bean id="beanForSet"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.collections.BeanForSet" />
+</beans>

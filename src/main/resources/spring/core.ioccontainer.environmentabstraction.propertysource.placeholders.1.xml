@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- The expression "${numberOfTheOtherConfigurationFile:2}" below will -->
+	<!-- be resolved when importing the specified resource. -->
+	<!-- If the property "numberOfTheOtherConfigurationFile" does not exist -->
+	<!-- in the environment, the default value "2" is used. -->
+	<!-- To make the property "numberOfTheOtherConfigurationFile" exist in the -->
+	<!-- environment, add the following VM argument when launching the application. -->
+	<!-- -DnumberOfTheOtherConfigurationFile=3 -->
+	<import
+		resource="core.ioccontainer.environmentabstraction.propertysource.placeholders.${numberOfTheOtherConfigurationFile:2}.xml" />
+
+	<!-- If the bean "PropertyPlaceholderConfigurer" is not defined, -->
+	<!-- all the following expressions "${...}" will not be resolved, -->
+	<!-- instead, those expressions will be processed as literals. -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations"
+			value="classpath:core.ioccontainer.environmentabstraction.propertysource.placeholders.properties" />
+		<property name="properties">
+			<props>
+				<prop key="key4">value4</prop>
+				<prop key="key5">value5</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.propertysource.placeholders.TestBean1">
+		<property name="javaVersion1" value="#{systemProperties['java.version']}" />
+
+		<!-- Value of the following property becomes the literal "${java.version}" -->
+		<!-- if the bean "PropertyPlaceholderConfigurer" is not defined. -->
+		<property name="javaVersion2" value="${java.version}" />
+
+		<property name="javaHome1" value="#{systemEnvironment['JAVA_HOME']}" />
+
+		<!-- Value of the following property becomes the literal "${JAVA_HOME}" -->
+		<!-- if the bean "PropertyPlaceholderConfigurer" is not defined. -->
+		<property name="javaHome2" value="${JAVA_HOME}" />
+
+		<!-- Values of the following properties becomes the literal "${keyN}" -->
+		<!-- if the bean "PropertyPlaceholderConfigurer" is not defined. -->
+		<property name="field1" value="${key1}" />
+		<property name="field2" value="${key2}" />
+		<property name="field3" value="${key3}" />
+		<property name="field4" value="${key4}" />
+		<property name="field5" value="${key5}" />
+		<property name="field6" value="${key6:defaultValue6}" />
+	</bean>
+
+</beans>

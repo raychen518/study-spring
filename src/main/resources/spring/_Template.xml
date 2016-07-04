@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- ======================================== -->
+	<!-- The <context:xxx> Elements -->
+	<!-- ======================================== -->
+	<!-- Note: The namespace "context" should be specified for this kind of -->
+	<!-- elements to take effect. -->
+
+	<!-- The <context:annotation-config> element must be added to activate various -->
+	<!-- annotations to be detected in bean classes. -->
+	<!-- Those annotations are as follows. -->
+	<!-- - @Required and @Autowired (from Spring) -->
+	<!-- - @PostConstruct, @PreDestroy and @Resource (from JSR 250) -->
+	<!-- - @WebServiceRef (from JAX-WS) -->
+	<!-- - @EJB (from EJB 3) -->
+	<!-- - @PersistenceContext and @PersistenceUnit (from JPA) -->
+	<!-- - etc. -->
+	<context:annotation-config />
+
+	<!-- The <context:component-scan> element must be added to scan the classpath -->
+	<!-- for annotated components that will be auto-registered as beans. -->
+	<!-- By default, the @Component, @Repository, @Service, @Controller, @RestController, -->
+	<!-- @ControllerAdvice, and @Configuration stereotypes provided by Spring -->
+	<!-- will be detected. -->
+	<!-- This elements implies the effects of the <context:annotation-config> -->
+	<!-- element, which is usually desired for auto-detected components. -->
+	<context:component-scan base-package="xxx.xxx.xxx" />
+
+	<!-- The <context:load-time-weaver> element must be added to activate a -->
+	<!-- LoadTimeWeaver for the application context, available as a bean with -->
+	<!-- the name "loadTimeWeaver". -->
+	<!-- Then, any bean that implements the LoadTimeWeaverAware interface will -->
+	<!-- receive the LoadTimeWeaver reference automatically. -->
+	<context:load-time-weaver />
+
+	<!-- ======================================== -->
+	<!-- The <tx:xxx> Elements -->
+	<!-- ======================================== -->
+	<!-- Note: The namespace "tx" should be specified for this kind of -->
+	<!-- elements to take effect. -->
+
+	<!-- The <tx:annotation-driven> element must be added to enable the configuration -->
+	<!-- of transactional behavior based on annotations. -->
+	<tx:annotation-driven />
+
+</beans>

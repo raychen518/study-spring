@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<beans profile="profile1">
+		<context:component-scan
+			base-package="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.package1,
+						  com.raychen518.study.spring.core.ioccontainer.environmentabstraction.package4,
+						  com.raychen518.study.spring.core.ioccontainer.environmentabstraction.package5,
+						  com.raychen518.study.spring.core.ioccontainer.environmentabstraction.package6" />
+
+		<bean id="beanE2"
+			class="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.javabased.BeanE2" />
+
+		<bean id="beanE4"
+			class="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.javabased.BeanE4" />
+	</beans>
+
+	<beans profile="profile2">
+		<context:component-scan
+			base-package="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.package2" />
+
+		<bean id="beanE3"
+			class="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.javabased.BeanE3" />
+
+		<bean id="beanE5"
+			class="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.javabased.BeanE5" />
+	</beans>
+
+	<beans profile="profile3">
+		<context:component-scan
+			base-package="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.package3,
+						  com.raychen518.study.spring.core.ioccontainer.environmentabstraction.package4,
+						  com.raychen518.study.spring.core.ioccontainer.environmentabstraction.package6" />
+
+		<bean id="beanE4"
+			class="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.javabased.BeanE4" />
+
+		<bean id="beanE5"
+			class="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.javabased.BeanE5" />
+	</beans>
+
+	<beans>
+		<bean id="beanE1"
+			class="com.raychen518.study.spring.core.ioccontainer.environmentabstraction.javabased.BeanE1" />
+	</beans>
+
+</beans>

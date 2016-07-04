@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+
+	<bean id="movieRecommender"
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.MovieRecommender" />
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.Movie">
+		<!-- The short form of the type of the custom qualifier annotation can 
+			be used in the "type" attribute of the "qualifier" element, if no risk of 
+			conflicting names exists. -->
+		<qualifier type="MovieQualifier">
+			<!-- The "attribute" element is used to specify the qualifier. -->
+			<attribute key="genre" value="Action" />
+			<attribute key="format" value="VHS" />
+		</qualifier>
+		<property name="name" value="Deadpool" />
+		<property name="genre" value="Action" />
+		<property name="format"
+			value="#{T(com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.MovieFormat).VHS}" />
+		<property name="length" value="108" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.Movie">
+		<qualifier type="MovieQualifier">
+			<attribute key="genre" value="Comedy" />
+			<attribute key="format" value="DVD" />
+		</qualifier>
+		<property name="name" value="The Wolf of Wall Street" />
+		<property name="genre" value="Comedy" />
+		<property name="format"
+			value="#{T(com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.MovieFormat).DVD}" />
+		<property name="length" value="127" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.Movie">
+		<qualifier type="MovieQualifier">
+			<attribute key="genre" value="Science Fiction" />
+			<attribute key="format" value="BLURAY" />
+		</qualifier>
+		<property name="name" value="X-Men: Apocalypse" />
+		<property name="genre" value="Science Fiction" />
+		<property name="format"
+			value="#{T(com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.MovieFormat).BLURAY}" />
+		<property name="length" value="96" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.Movie">
+		<qualifier type="MovieQualifier">
+			<attribute key="genre" value="Action" />
+			<attribute key="format" value="VHS" />
+		</qualifier>
+		<property name="name" value="John Wick" />
+		<property name="genre" value="Action" />
+		<property name="format"
+			value="#{T(com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.MovieFormat).VHS}" />
+		<property name="length" value="181" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.Movie">
+		<!-- The "meta" element can be used to provide a fall-back value if no qualifier is present. -->
+		<meta key="genre" value="Comedy" />
+		<meta key="format" value="DVD" />
+		<property name="name" value="Kung Fu Panda" />
+		<property name="genre" value="Comedy" />
+		<property name="format"
+			value="#{T(com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case3.MovieFormat).DVD}" />
+		<property name="length" value="138" />
+	</bean>
+
+</beans>

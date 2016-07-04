@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-lazy-init="true">
+	<bean id="someBean1"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.lazyinitialized.SomeBean1">
+		<property name="field1" value="abc" />
+	</bean>
+
+	<bean id="someBean2"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.lazyinitialized.SomeBean2">
+		<property name="field1" value="def" />
+	</bean>
+</beans>

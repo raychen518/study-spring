@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="initialize" default-destroy-method="destroy">
+	<bean id="beanA"
+		class="com.raychen518.study.spring.core.ioccontainer.customizingbeannature.defaultcallbacks.BeanA">
+		<property name="field1" value="123" />
+	</bean>
+
+	<bean id="beanB"
+		class="com.raychen518.study.spring.core.ioccontainer.customizingbeannature.defaultcallbacks.BeanB"
+		init-method="startup" destroy-method="shutdown">
+		<property name="field1" value="456" />
+	</bean>
+
+	<bean id="beanC"
+		class="com.raychen518.study.spring.core.ioccontainer.customizingbeannature.defaultcallbacks.BeanC">
+		<property name="field1" value="789" />
+	</bean>
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The attribute setting "xmlns:p=..." is added for using the p-namespace. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- The Normal Approach -->
+	<bean id="someBean1"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.pnamespace.SomeBean">
+		<property name="field1" value="123" />
+		<property name="field2" ref="someOtherBean" />
+	</bean>
+
+	<!-- The p-namespace Approach -->
+	<bean id="someBean2"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.pnamespace.SomeBean"
+		p:field1="456" p:field2-ref="someOtherBean">
+	</bean>
+
+	<bean id="someOtherBean"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.pnamespace.SomeOtherBean" />
+</beans>

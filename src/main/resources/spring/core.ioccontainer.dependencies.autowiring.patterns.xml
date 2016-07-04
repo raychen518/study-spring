@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NOTE: SETTINGS OF THE ATTRIBUTES "default-autowire-candidates" -->
+<!-- AND "autowire-candidate" DO NOT WORK. -->
+<!-- MORE INVESTIGATION IS NEEDED. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byType" default-autowire-candidates="*">
+	<bean id="beanA1"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.autowiring.patterns.BeanA">
+		<property name="field2" value="a1" />
+	</bean>
+
+	<bean id="beanA2"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.autowiring.patterns.BeanA"
+		autowire-candidate="false">
+		<property name="field2" value="a2" />
+	</bean>
+
+	<bean id="beanA3"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.autowiring.patterns.BeanA">
+		<property name="field2" value="a3" />
+	</bean>
+
+	<bean id="beanB1"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.autowiring.patterns.BeanB">
+		<property name="field2" value="b1" />
+	</bean>
+
+	<bean id="beanB2"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.autowiring.patterns.BeanB">
+		<property name="field2" value="b2" />
+	</bean>
+
+	<bean id="beanB3"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.autowiring.patterns.BeanB">
+		<property name="field2" value="b3" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.autowiring.patterns.BeanC" />
+</beans>

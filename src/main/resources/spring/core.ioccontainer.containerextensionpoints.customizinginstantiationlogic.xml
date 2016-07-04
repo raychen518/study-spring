@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="car1"
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizinginstantiationlogic.case1.CarFactoryBean">
+		<property name="model" value="HTNF-001"></property>
+		<property name="color" value="#{T(java.awt.Color).RED}"></property>
+		<property name="price" value="12345.67"></property>
+	</bean>
+
+	<bean id="car2"
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizinginstantiationlogic.case1.CarFactoryBean">
+		<property name="model" value="HTNF-002"></property>
+		<property name="color" value="#{T(java.awt.Color).GREEN}"></property>
+		<property name="price" value="23456.78"></property>
+	</bean>
+
+	<bean id="car3"
+		class="com.raychen518.study.spring.core.ioccontainer.containerextensionpoints.customizinginstantiationlogic.case1.CarFactoryBean">
+		<property name="model" value="HTNF-003"></property>
+		<property name="color" value="#{T(java.awt.Color).BLUE}"></property>
+		<property name="price" value="34567.89"></property>
+	</bean>
+</beans>

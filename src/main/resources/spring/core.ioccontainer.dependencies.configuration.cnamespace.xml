@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The attribute setting "xmlns:p=..." is added for using the p-namespace. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- The Normal Approach -->
+	<bean id="someBean1"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.cnamespace.SomeBean">
+		<constructor-arg value="123" />
+		<constructor-arg ref="someOtherBean" />
+	</bean>
+
+	<!-- The c-namespace Approach #1 -->
+	<bean id="someBean2"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.cnamespace.SomeBean"
+		c:field1="456" c:field2-ref="someOtherBean">
+	</bean>
+
+	<!-- The c-namespace Approach #2 -->
+	<!-- For the case that the constructor argument names are not available. -->
+	<!-- Note: This approach is not recommended. -->
+	<bean id="someBean3"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.cnamespace.SomeBean"
+		c:_0="789" c:_1-ref="someOtherBean">
+	</bean>
+
+	<bean id="someOtherBean"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.cnamespace.SomeOtherBean" />
+</beans>

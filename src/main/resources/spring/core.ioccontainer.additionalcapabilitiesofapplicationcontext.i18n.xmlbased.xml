@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- When an ApplicationContext is loaded, it automatically searches for -->
+	<!-- a MessageSource bean defined in the context, which name is "messageSource". -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<!-- Note: A base name like "core.ioccontainer.additionalcapabilitiesofapplicationcontext.i18n.resourceBundleA" -->
+				<!-- is wrong because a ResourceBundle name is effectively a classpath -->
+				<!-- location, which means "abc.def" is effectively equivalent to "abc/def" -->
+				<!-- when the name is parsed. -->
+				<!-- For more details, see org.springframework.context.support.ResourceBundleMessageSource.setBasenames(String...). -->
+				<value>core_ioccontainer_additionalcapabilitiesofapplicationcontext_i18n_resourceBundleA
+				</value>
+				<value>core_ioccontainer_additionalcapabilitiesofapplicationcontext_i18n_resourceBundleB
+				</value>
+				<value>core_ioccontainer_additionalcapabilitiesofapplicationcontext_i18n_resourceBundleC
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.additionalcapabilitiesofapplicationcontext.i18n.xmlbased.SomeObject1">
+		<property name="messageSource" ref="messageSource" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.additionalcapabilitiesofapplicationcontext.i18n.xmlbased.SomeObject2" />
+
+</beans>

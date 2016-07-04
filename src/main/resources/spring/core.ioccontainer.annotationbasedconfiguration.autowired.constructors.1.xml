@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="beanA"
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.autowired.constructors.case1.BeanA">
+		<constructor-arg name="beanB" ref="beanB" />
+	</bean>
+
+	<bean id="beanB"
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.autowired.constructors.case1.BeanB">
+		<property name="field1" value="123" />
+		<property name="field2" value="abc" />
+		<property name="field3" value="true" />
+	</bean>
+
+</beans>

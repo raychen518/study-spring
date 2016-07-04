@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="someBean"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.prototype.SomeBean"
+		scope="prototype" />
+
+	<!-- =================================================== -->
+
+	<bean id="beanA1"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.prototype.BeanA1">
+		<property name="beanB" ref="beanB" />
+	</bean>
+
+	<bean id="beanA2"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.prototype.BeanA2">
+		<property name="beanB" ref="beanB" />
+	</bean>
+
+	<bean id="beanA3"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.prototype.BeanA3">
+		<property name="beanB" ref="beanB" />
+	</bean>
+
+	<bean id="beanB"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.prototype.BeanB"
+		scope="prototype" />
+</beans>

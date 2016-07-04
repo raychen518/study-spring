@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="someBean"
+		class="com.raychen518.study.spring.core.ioccontainer.dependencies.configuration.nullandemptystringvalues.SomeBean">
+		<!-- Set an empty string value. -->
+		<property name="field1" value="" />
+
+		<!-- Set a null value. -->
+		<property name="field2">
+			<null />
+		</property>
+	</bean>
+</beans>

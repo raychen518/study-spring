@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- The attribute setting "scope="singleton"" can be omitted, -->
+	<!-- because the Singleton scope is the default scope. -->
+	<bean id="someBean"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.singleton.SomeBean"
+		scope="singleton" />
+
+	<!-- =================================================== -->
+
+	<bean id="beanA1"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.singleton.BeanA1">
+		<property name="beanB" ref="beanB" />
+	</bean>
+
+	<bean id="beanA2"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.singleton.BeanA2">
+		<property name="beanB" ref="beanB" />
+	</bean>
+
+	<bean id="beanA3"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.singleton.BeanA3">
+		<property name="beanB" ref="beanB" />
+	</bean>
+
+	<bean id="beanB"
+		class="com.raychen518.study.spring.core.ioccontainer.beanscopes.singleton.BeanB" />
+</beans>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+
+	<bean id="beanA1"
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.case1.BeanA1" />
+
+	<bean id="beanA2"
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.case1.BeanA2" />
+
+	<bean id="beanA3"
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.case1.BeanA3" />
+
+	<bean id="beanA4"
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.case1.BeanA4" />
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.case1.BeanB">
+		<qualifier value="firstBeanB" />
+		<property name="field1" value="123" />
+		<property name="field2" value="abc" />
+		<property name="field3" value="true" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.case1.BeanB">
+		<qualifier value="secondBeanB" />
+		<property name="field1" value="456" />
+		<property name="field2" value="def" />
+		<property name="field3" value="false" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.case1.BeanB">
+		<qualifier value="thirdBeanB" />
+		<property name="field1" value="789" />
+		<property name="field2" value="ghi" />
+		<property name="field3" value="true" />
+	</bean>
+
+</beans>

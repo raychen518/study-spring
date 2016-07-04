@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+
+	<bean id="beanA"
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case1.BeanA" />
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case1.BeanB">
+		<!-- Type of the custom qualifier annotation should be specified by the 
+			"type" attribute of the "qualifier" element. -->
+		<qualifier
+			type="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case1.Group"
+			value="beanBGroup1" />
+		<property name="field1" value="111" />
+		<property name="field2" value="abc" />
+		<property name="field3" value="true" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case1.BeanB">
+		<qualifier
+			type="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case1.Group"
+			value="beanBGroup2" />
+		<property name="field1" value="222" />
+		<property name="field2" value="def" />
+		<property name="field3" value="false" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case1.BeanB">
+		<qualifier
+			type="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case1.Group"
+			value="beanBGroup1" />
+		<property name="field1" value="333" />
+		<property name="field2" value="ghi" />
+		<property name="field3" value="true" />
+	</bean>
+
+	<bean
+		class="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case1.BeanB">
+		<qualifier
+			type="com.raychen518.study.spring.core.ioccontainer.annotationbasedconfiguration.qualifier.custom.case1.Group"
+			value="beanBGroup2" />
+		<property name="field1" value="444" />
+		<property name="field2" value="jkl" />
+		<property name="field3" value="false" />
+	</bean>
+
+</beans>
