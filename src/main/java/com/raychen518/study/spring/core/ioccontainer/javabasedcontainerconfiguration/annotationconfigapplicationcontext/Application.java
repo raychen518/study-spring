@@ -5,7 +5,7 @@ import java.util.Random;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonsUtil;
+import com.raychen518.study.spring.util.Utils;
 
 /**
  * <pre>
@@ -113,7 +113,7 @@ public class Application {
 					BeanConfiguration1.class);
 			System.out.println();
 
-			CommonsUtil.listBeans(applicationContext);
+			Utils.listBeans(applicationContext);
 
 			applicationContext.close();
 		}
@@ -129,7 +129,7 @@ public class Application {
 					BeanConfiguration7.class, SomeBean.class);
 			System.out.println();
 
-			CommonsUtil.listBeans(applicationContext);
+			Utils.listBeans(applicationContext);
 
 			applicationContext.close();
 		}
@@ -151,7 +151,7 @@ public class Application {
 			applicationContext.refresh();
 			System.out.println();
 
-			CommonsUtil.listBeans(applicationContext);
+			Utils.listBeans(applicationContext);
 
 			applicationContext.close();
 		}
@@ -168,7 +168,7 @@ public class Application {
 			applicationContext.refresh();
 			System.out.println();
 
-			CommonsUtil.listBeans(applicationContext);
+			Utils.listBeans(applicationContext);
 
 			applicationContext.close();
 		}

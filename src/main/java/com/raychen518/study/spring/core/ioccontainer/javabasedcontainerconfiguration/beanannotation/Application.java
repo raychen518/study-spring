@@ -3,7 +3,7 @@ package com.raychen518.study.spring.core.ioccontainer.javabasedcontainerconfigur
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonsUtil;
+import com.raychen518.study.spring.util.Utils;
 
 public class Application {
 
@@ -12,7 +12,7 @@ public class Application {
 				BeanConfiguration1.class, BeanConfiguration2.class);
 		System.out.println();
 
-		CommonsUtil.listBeans(applicationContext);
+		Utils.listBeans(applicationContext);
 
 		// ---------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 package com.raychen518.study.spring.core.ioccontainer.javabasedcontainerconfiguration.annotationconfigapplicationcontext.somepackage;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonBean;
+import com.raychen518.study.spring.core.ioccontainer.CommonBean;
 
 public class BeanG3 extends CommonBean {
 

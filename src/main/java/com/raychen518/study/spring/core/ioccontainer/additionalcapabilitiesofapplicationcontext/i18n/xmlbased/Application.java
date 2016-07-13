@@ -7,7 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonsUtil;
+import com.raychen518.study.spring.util.Utils;
 
 /**
  * <pre>
@@ -34,7 +34,7 @@ public class Application {
 		ConfigurableApplicationContext applicationContext = new ClassPathXmlApplicationContext(
 				"core.ioccontainer.additionalcapabilitiesofapplicationcontext.i18n.xmlbased.xml");
 
-		CommonsUtil.listBeans(applicationContext);
+		Utils.listBeans(applicationContext);
 
 		System.out.println(applicationContext.getMessage("message.a1", null, null));
 		System.out.println(applicationContext.getMessage("message.a2", null, null));

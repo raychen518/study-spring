@@ -3,7 +3,7 @@ package com.raychen518.study.spring.core.ioccontainer.registeringaloadtimeweaver
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonsUtil;
+import com.raychen518.study.spring.util.Utils;
 
 /**
  * <pre>
@@ -18,7 +18,7 @@ public class Application {
 		ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(
 				BeanConfiguration.class);
 
-		CommonsUtil.listBeans(applicationContext);
+		Utils.listBeans(applicationContext);
 
 		SomeBean someBean = applicationContext.getBean(SomeBean.class);
 		System.out.println("someBean: " + someBean);

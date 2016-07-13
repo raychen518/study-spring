@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonsUtil;
+import com.raychen518.study.spring.util.Utils;
 
 /**
  * @see com.raychen518.study.spring.core.ioccontainer.environmentabstraction.
@@ -21,7 +21,7 @@ public class Application {
 		applicationContext.setConfigLocation("core.ioccontainer.environmentabstraction.xmlbased.xml");
 		applicationContext.refresh();
 
-		CommonsUtil.listBeans(applicationContext);
+		Utils.listBeans(applicationContext);
 
 		applicationContext.close();
 	}

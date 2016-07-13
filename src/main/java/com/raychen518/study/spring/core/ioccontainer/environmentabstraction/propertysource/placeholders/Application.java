@@ -3,7 +3,7 @@ package com.raychen518.study.spring.core.ioccontainer.environmentabstraction.pro
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonsUtil;
+import com.raychen518.study.spring.util.Utils;
 
 public class Application {
 
@@ -11,7 +11,7 @@ public class Application {
 		ConfigurableApplicationContext applicationContext = new ClassPathXmlApplicationContext(
 				"core.ioccontainer.environmentabstraction.propertysource.placeholders.1.xml");
 
-		CommonsUtil.listBeans(applicationContext);
+		Utils.listBeans(applicationContext);
 
 		TestBean1 testBean1 = applicationContext.getBean(TestBean1.class);
 

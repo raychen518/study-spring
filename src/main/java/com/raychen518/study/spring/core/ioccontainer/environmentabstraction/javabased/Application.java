@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonsUtil;
+import com.raychen518.study.spring.util.Utils;
 
 /**
  * <pre>
@@ -32,7 +32,7 @@ public class Application {
 		applicationContext.register(BeanConfiguration.class);
 		applicationContext.refresh();
 
-		CommonsUtil.listBeans(applicationContext);
+		Utils.listBeans(applicationContext);
 
 		applicationContext.close();
 	}

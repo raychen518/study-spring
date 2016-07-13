@@ -1,4 +1,4 @@
-package com.raychen518.study.spring.core.ioccontainer._util;
+package com.raychen518.study.spring.util;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 import org.springframework.context.ApplicationContext;
 
-public class CommonsUtil {
+public class Utils {
 
 	private static final String LINE_DELIMITER = "############################################################";
 	private static final String LINE_COLUMN_HEADING = "----------------------------------------";

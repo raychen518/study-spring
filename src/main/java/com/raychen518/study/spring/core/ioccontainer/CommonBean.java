@@ -1,4 +1,4 @@
-package com.raychen518.study.spring.core.ioccontainer._util;
+package com.raychen518.study.spring.core.ioccontainer;
 
 public abstract class CommonBean {
 

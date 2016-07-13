@@ -2,7 +2,7 @@ package com.raychen518.study.spring.core.ioccontainer.javabasedcontainerconfigur
 
 import org.springframework.stereotype.Component;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonBean;
+import com.raychen518.study.spring.core.ioccontainer.CommonBean;
 
 @Component
 public class BeanG2 extends CommonBean {

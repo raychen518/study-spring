@@ -11,7 +11,7 @@ import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.core.env.PropertySource;
 
-import com.raychen518.study.spring.core.ioccontainer._util.CommonsUtil;
+import com.raychen518.study.spring.util.Utils;
 
 /**
  * <pre>
@@ -62,7 +62,7 @@ public class Test {
 
 		listPropertySources(propertySources);
 
-		CommonsUtil.printDelimiterLine();
+		Utils.printDelimiterLine();
 
 		System.out.println(
 				"environment.containsProperty(PROPERTY_1_KEY): " + environment.containsProperty(PROPERTY_1_KEY));
@@ -90,13 +90,13 @@ public class Test {
 
 		listPropertySources(propertySources);
 
-		CommonsUtil.printDelimiterLine();
+		Utils.printDelimiterLine();
 
-		CommonsUtil.listSystemProperties();
+		Utils.listSystemProperties();
 
-		CommonsUtil.printDelimiterLine();
+		Utils.printDelimiterLine();
 
-		CommonsUtil.listSystemEnvironmentVariables();
+		Utils.listSystemEnvironmentVariables();
 
 		applicationContext.close();
 	}
