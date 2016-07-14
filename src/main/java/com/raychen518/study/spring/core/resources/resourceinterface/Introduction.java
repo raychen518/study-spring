@@ -67,13 +67,13 @@ import com.raychen518.study.spring.util.Utils;
  */
 public class Introduction {
 
-	public static void main(String[] args) {
-
+	private void test() {
 		// =====================================================================
 		// Resource (org.springframework.core.io.Resource)
 		// =====================================================================
 		{
 			Resource resource = null;
+
 			try {
 				resource = new UrlResource("https://en.wikipedia.org/wiki/Main_Page");
 				System.out.println("resource: " + resource);
@@ -144,10 +144,10 @@ public class Introduction {
 			// ---------------------------------------------
 			// Resource createRelative(String relativePath) throws IOException;
 			// ---------------------------------------------
-
 			try {
 				Resource mainResource = new UrlResource("https://en.wikipedia.org/wiki");
 				System.out.println("mainResource: " + mainResource);
+
 				Resource relativeResource = mainResource.createRelative("Wikipediaa");
 				System.out.println("relativeResource: " + relativeResource);
 			} catch (IOException e) {
@@ -172,6 +172,7 @@ public class Introduction {
 		// =====================================================================
 		{
 			InputStreamSource inputStreamSource = null;
+
 			try {
 				inputStreamSource = new UrlResource("https://en.wikipedia.org/wiki/Main_Page");
 			} catch (MalformedURLException e) {
@@ -187,7 +188,10 @@ public class Introduction {
 				e.printStackTrace();
 			}
 		}
+	}
 
+	public static void main(String[] args) {
+		new Introduction().test();
 	}
 
 }
