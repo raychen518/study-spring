@@ -23,7 +23,12 @@ public class Utils {
 
 	private static final String SPRING_FRAMEWORK_BASE_PACKAGE = "org.springframework";
 
+	/**
+	 * Print a delimiter line with a blank line before and after this delimiter
+	 * line respectively.
+	 */
 	public static void printDelimiterLine() {
+		System.out.println();
 		System.out.println(LINE_DELIMITER);
 		System.out.println();
 	}
