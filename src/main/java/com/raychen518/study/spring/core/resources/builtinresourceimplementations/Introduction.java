@@ -52,11 +52,11 @@ import com.raychen518.study.spring.util.Utils;
  * It has main public fields/methods as follows.
  * Fields/Methods											Description
  * ---------------------------------------------------------------------------------------------------------------------
+ * public UrlResource(String path) throws MalformedURLException {...}
+ * 															Create a new UrlResource based on a URL path.
  * public UrlResource(URL url) {...}						Create a new UrlResource based on the given URL object.
  * public UrlResource(URI uri) throws MalformedURLException {...}
  * 															Create a new UrlResource based on the given URI object.
- * public UrlResource(String path) throws MalformedURLException {...}
- * 															Create a new UrlResource based on a URL path.
  * public UrlResource(String protocol, String location) throws MalformedURLException {...}
  * 															Create a new UrlResource based on a URI specification.
  * public UrlResource(String protocol, String location, String fragment) throws MalformedURLException {...}
@@ -121,211 +121,281 @@ import com.raychen518.study.spring.util.Utils;
  */
 public class Introduction {
 
+	private static final String URL_RESOURCE_URL_PATH_HTTP = "http://en.wikipedia.org/wiki/Main_Page";
+	private static final String URL_RESOURCE_URL_PATH_FTP = "ftp://ftp.cuhk.hk/";
+	private static final String URL_RESOURCE_URL_PATH_FILE = "file:///d:/temp/temp.txt";
+	private static final String URL_RESOURCE_URL_PROTOCOL_HTTP = "http";
+	private static final String URL_RESOURCE_URL_LOCATION_1 = "//en.wikipedia.org/wiki/Main_Page";
+	private static final String URL_RESOURCE_URL_LOCATION_2 = "//en.wikipedia.org/wiki/Wikipedia";
+	private static final String URL_RESOURCE_URL_FRAGMENT = "History";
+
 	private void test() {
-		// =====================================================================
-		// UrlResource (org.springframework.core.io.UrlResource)
-		// =====================================================================
-		{
-			// ---------------------------------------------
-			// public UrlResource(URL url) {...}
-			// ---------------------------------------------
-			{
-				try {
-					Resource resource = new UrlResource(new URL("https://en.wikipedia.org/wiki/Main_Page"));
-					System.out.println("resource: " + resource);
-					System.out.println("resource.exists(): " + resource.exists());
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				}
-			}
-
-			System.out.println();
-
-			// ---------------------------------------------
-			// public UrlResource(URI uri) throws MalformedURLException {...}
-			// ---------------------------------------------
-			{
-				try {
-					Resource resource = new UrlResource(new URI("https://en.wikipedia.org/wiki/Main_Page"));
-					System.out.println("resource: " + resource);
-					System.out.println("resource.exists(): " + resource.exists());
-				} catch (MalformedURLException | URISyntaxException e) {
-					e.printStackTrace();
-				}
-			}
-
-			System.out.println();
-
-			// ---------------------------------------------
-			// public UrlResource(String path) throws MalformedURLException
-			// {...}
-			// ---------------------------------------------
-			{
-				try {
-					Resource resource = new UrlResource("https://en.wikipedia.org/wiki/Main_Page");
-					System.out.println("resource: " + resource);
-					System.out.println("resource.exists(): " + resource.exists());
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				}
-			}
-
-			System.out.println();
-
-			// ---------------------------------------------
-			// public UrlResource(String protocol, String location) throws
-			// MalformedURLException {...}
-			// ---------------------------------------------
-			{
-				try {
-					Resource resource = new UrlResource("https", "//en.wikipedia.org/wiki/Main_Page");
-					System.out.println("resource: " + resource);
-					System.out.println("resource.exists(): " + resource.exists());
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				}
-			}
-
-			System.out.println();
-
-			// ---------------------------------------------
-			// public UrlResource(String protocol, String location, String
-			// fragment) throws MalformedURLException {...}
-			// ---------------------------------------------
-			{
-				try {
-					Resource resource = new UrlResource("https", "//en.wikipedia.org/wiki/Wikipedia", "History");
-					System.out.println("resource: " + resource);
-					System.out.println("resource.exists(): " + resource.exists());
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+		testUrlResource();
 
 		Utils.printDelimiterLine();
 
-		// =====================================================================
-		// ClassPathResource (org.springframework.core.io.ClassPathResource)
-		// =====================================================================
-		{
-			// ---------------------------------------------
-			// public ClassPathResource(String path) {...}
-			// ---------------------------------------------
-			{
-				Resource resource1 = new ClassPathResource("java/lang/Object.class");
-				System.out.println("resource1: " + resource1);
-				System.out.println("resource1.exists(): " + resource1.exists());
-
-				System.out.println();
-
-				Resource resource2 = new ClassPathResource("someFile.txt");
-				System.out.println("resource2: " + resource2);
-				System.out.println("resource2.exists(): " + resource2.exists());
-
-				System.out.println();
-
-				Resource resource3 = new ClassPathResource("someDir/");
-				System.out.println("resource3: " + resource3);
-				System.out.println("resource3.exists(): " + resource3.exists());
-
-				System.out.println();
-
-				Resource resource4 = new ClassPathResource("someFile.properties");
-				System.out.println("resource4: " + resource4);
-				System.out.println("resource4.exists(): " + resource4.exists());
-
-				System.out.println();
-
-				Resource resource5 = new ClassPathResource("someFile.xml");
-				System.out.println("resource5: " + resource5);
-				System.out.println("resource5.exists(): " + resource5.exists());
-
-				System.out.println();
-
-				Resource resource6 = new ClassPathResource("classpath:/dirA/dirB/dirC/someFile.xml");
-				System.out.println("resource6: " + resource6);
-				System.out.println("resource6.exists(): " + resource6.exists());
-			}
-
-			System.out.println();
-
-			// ---------------------------------------------
-			// public ClassPathResource(String path, Class<?> clazz) {...}
-			// ---------------------------------------------
-			{
-				Resource resource1 = new ClassPathResource("String.class", Object.class);
-				System.out.println("resource1: " + resource1);
-				System.out.println("resource1.exists(): " + resource1.exists());
-
-				System.out.println();
-
-				Resource resource2 = new ClassPathResource("/java/lang/String.class", Object.class);
-				System.out.println("resource2: " + resource2);
-				System.out.println("resource2.exists(): " + resource2.exists());
-
-				System.out.println();
-
-				// Get some resource from the location where current class is.
-				Resource resource3 = new ClassPathResource("someFile.properties", getClass());
-				System.out.println("resource3: " + resource3);
-				System.out.println("resource3.exists(): " + resource3.exists());
-			}
-
-			System.out.println();
-
-			// ---------------------------------------------
-			// public ClassPathResource(String path, ClassLoader classLoader)
-			// {...}
-			// ---------------------------------------------
-			{
-				Resource resource1 = new ClassPathResource("java/lang/String.class", getClass().getClassLoader());
-				System.out.println("resource1: " + resource1);
-				System.out.println("resource1.exists(): " + resource1.exists());
-
-				System.out.println();
-
-				Resource resource2 = new ClassPathResource("someFile.properties", getClass().getClassLoader());
-				System.out.println("resource2: " + resource2);
-				System.out.println("resource2.exists(): " + resource2.exists());
-			}
-
-			System.out.println();
-
-			// ---------------------------------------------
-			// public final ClassLoader getClassLoader() {...}
-			// ---------------------------------------------
-			{
-				ClassPathResource resource = new ClassPathResource("java/lang/Object.class");
-				System.out.println("resource: " + resource);
-				System.out.println("resource.exists(): " + resource.exists());
-				System.out.println("resource.getClassLoader(): " + resource.getClassLoader());
-			}
-
-			System.out.println();
-
-			// ---------------------------------------------
-			// public final String getPath() {...}
-			// ---------------------------------------------
-			{
-				ClassPathResource resource = new ClassPathResource("java/lang/Object.class");
-				System.out.println("resource: " + resource);
-				System.out.println("resource.exists(): " + resource.exists());
-				System.out.println("resource.getPath(): " + resource.getPath());
-			}
-		}
+		testClassPathResource();
 
 		Utils.printDelimiterLine();
 
+		testFileSystemResource();
+
+		Utils.printDelimiterLine();
+
+		testServletContextResource();
+
+		Utils.printDelimiterLine();
+
+		testInputStreamResource();
+
+		Utils.printDelimiterLine();
+
+		testByteArrayResource();
+	}
+
+	/**
+	 * Test the class UrlResource.
+	 */
+	private void testUrlResource() {
+		// -------------------------------------------------
+		// public UrlResource(String path) throws MalformedURLException {...}
+		// -------------------------------------------------
+		{
+			// HTTP Resource
+			try {
+				Resource resource = new UrlResource(URL_RESOURCE_URL_PATH_HTTP);
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+
+			System.out.println();
+
+			// FTP Resource
+			try {
+				Resource resource = new UrlResource(URL_RESOURCE_URL_PATH_FTP);
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+
+			System.out.println();
+
+			// File Resource
+			try {
+				Resource resource = new UrlResource(URL_RESOURCE_URL_PATH_FILE);
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public UrlResource(URL url) {...}
+		// -------------------------------------------------
+		{
+			try {
+				Resource resource = new UrlResource(new URL(URL_RESOURCE_URL_PATH_HTTP));
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public UrlResource(URI uri) throws MalformedURLException {...}
+		// -------------------------------------------------
+		{
+			try {
+				Resource resource = new UrlResource(new URI(URL_RESOURCE_URL_PATH_HTTP));
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			} catch (MalformedURLException | URISyntaxException e) {
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public UrlResource(String protocol, String location) throws
+		// MalformedURLException {...}
+		// -------------------------------------------------
+		{
+			try {
+				Resource resource = new UrlResource(URL_RESOURCE_URL_PROTOCOL_HTTP, URL_RESOURCE_URL_LOCATION_1);
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public UrlResource(String protocol, String location, String fragment)
+		// throws MalformedURLException {...}
+		// -------------------------------------------------
+		{
+			try {
+				Resource resource = new UrlResource(URL_RESOURCE_URL_PROTOCOL_HTTP, URL_RESOURCE_URL_LOCATION_2,
+						URL_RESOURCE_URL_FRAGMENT);
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Test the class ClassPathResource.
+	 */
+	private void testClassPathResource() {
+		// -------------------------------------------------
+		// public ClassPathResource(String path) {...}
+		// -------------------------------------------------
+		{
+			{
+				Resource resource = new ClassPathResource("someFile");
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
+
+			System.out.println();
+
+			{
+				Resource resource = new ClassPathResource("someDir/");
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
+
+			System.out.println();
+
+			{
+				Resource resource = new ClassPathResource("someText.txt");
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
+
+			System.out.println();
+
+			{
+				Resource resource = new ClassPathResource("someFile.properties");
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
+
+			System.out.println();
+
+			{
+				Resource resource = new ClassPathResource("someFile.xml");
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
+
+			System.out.println();
+
+			{
+				Resource resource = new ClassPathResource("classpath:/dirA/dirB/dirC/someFile.xml");
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
+
+			System.out.println();
+
+			{
+				Resource resource = new ClassPathResource("java/lang/Object.class");
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public ClassPathResource(String path, Class<?> clazz) {...}
+		// -------------------------------------------------
+		{
+			Resource resource1 = new ClassPathResource("String.class", Object.class);
+			System.out.println("resource1: " + resource1);
+			System.out.println("resource1.exists(): " + resource1.exists());
+
+			System.out.println();
+
+			Resource resource2 = new ClassPathResource("/java/lang/String.class", Object.class);
+			System.out.println("resource2: " + resource2);
+			System.out.println("resource2.exists(): " + resource2.exists());
+
+			System.out.println();
+
+			// Get some resource from the location where current class is.
+			Resource resource3 = new ClassPathResource("someFile.properties", getClass());
+			System.out.println("resource3: " + resource3);
+			System.out.println("resource3.exists(): " + resource3.exists());
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public ClassPathResource(String path, ClassLoader classLoader) {...}
+		// -------------------------------------------------
+		{
+			Resource resource1 = new ClassPathResource("java/lang/String.class", getClass().getClassLoader());
+			System.out.println("resource1: " + resource1);
+			System.out.println("resource1.exists(): " + resource1.exists());
+
+			System.out.println();
+
+			Resource resource2 = new ClassPathResource("someFile.properties", getClass().getClassLoader());
+			System.out.println("resource2: " + resource2);
+			System.out.println("resource2.exists(): " + resource2.exists());
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public final ClassLoader getClassLoader() {...}
+		// -------------------------------------------------
+		{
+			ClassPathResource resource = new ClassPathResource("java/lang/Object.class");
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+			System.out.println("resource.getClassLoader(): " + resource.getClassLoader());
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public final String getPath() {...}
+		// -------------------------------------------------
+		{
+			ClassPathResource resource = new ClassPathResource("java/lang/Object.class");
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+			System.out.println("resource.getPath(): " + resource.getPath());
+		}
+	}
+
+	private void testFileSystemResource() {
 		// =====================================================================
 		// FileSystemResource (org.springframework.core.io.FileSystemResource)
 		// =====================================================================
 		{
 
 		}
+	}
 
-		Utils.printDelimiterLine();
-
+	private void testServletContextResource() {
 		// =====================================================================
 		// ServletContextResource
 		// (org.springframework.web.context.support.ServletContextResource)
@@ -333,25 +403,24 @@ public class Introduction {
 		{
 
 		}
+	}
 
-		Utils.printDelimiterLine();
-
+	private void testInputStreamResource() {
 		// =====================================================================
 		// InputStreamResource (org.springframework.core.io.InputStreamResource)
 		// =====================================================================
 		{
 
 		}
+	}
 
-		Utils.printDelimiterLine();
-
+	private void testByteArrayResource() {
 		// =====================================================================
 		// ByteArrayResource (org.springframework.core.io.ByteArrayResource)
 		// =====================================================================
 		{
 
 		}
-
 	}
 
 	public static void main(String[] args) {
