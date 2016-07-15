@@ -282,31 +282,23 @@ public class Introduction {
 			System.out.println();
 
 			{
+				Resource resource = new ClassPathResource("someXml.xml");
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
+
+			System.out.println();
+
+			{
+				Resource resource = new ClassPathResource("someProperties.properties");
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
+
+			System.out.println();
+
+			{
 				Resource resource = new ClassPathResource("someText.txt");
-				System.out.println("resource: " + resource);
-				System.out.println("resource.exists(): " + resource.exists());
-			}
-
-			System.out.println();
-
-			{
-				Resource resource = new ClassPathResource("someFile.properties");
-				System.out.println("resource: " + resource);
-				System.out.println("resource.exists(): " + resource.exists());
-			}
-
-			System.out.println();
-
-			{
-				Resource resource = new ClassPathResource("someFile.xml");
-				System.out.println("resource: " + resource);
-				System.out.println("resource.exists(): " + resource.exists());
-			}
-
-			System.out.println();
-
-			{
-				Resource resource = new ClassPathResource("classpath:/dirA/dirB/dirC/someFile.xml");
 				System.out.println("resource: " + resource);
 				System.out.println("resource.exists(): " + resource.exists());
 			}
@@ -326,22 +318,27 @@ public class Introduction {
 		// public ClassPathResource(String path, Class<?> clazz) {...}
 		// -------------------------------------------------
 		{
-			Resource resource1 = new ClassPathResource("String.class", Object.class);
-			System.out.println("resource1: " + resource1);
-			System.out.println("resource1.exists(): " + resource1.exists());
+			{
+				Resource resource = new ClassPathResource("someResource", getClass());
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
 
 			System.out.println();
 
-			Resource resource2 = new ClassPathResource("/java/lang/String.class", Object.class);
-			System.out.println("resource2: " + resource2);
-			System.out.println("resource2.exists(): " + resource2.exists());
+			{
+				Resource resource = new ClassPathResource("String.class", Object.class);
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
 
 			System.out.println();
 
-			// Get some resource from the location where current class is.
-			Resource resource3 = new ClassPathResource("someFile.properties", getClass());
-			System.out.println("resource3: " + resource3);
-			System.out.println("resource3.exists(): " + resource3.exists());
+			{
+				Resource resource = new ClassPathResource("/java/lang/String.class", Object.class);
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
 		}
 
 		System.out.println();
@@ -350,15 +347,21 @@ public class Introduction {
 		// public ClassPathResource(String path, ClassLoader classLoader) {...}
 		// -------------------------------------------------
 		{
-			Resource resource1 = new ClassPathResource("java/lang/String.class", getClass().getClassLoader());
-			System.out.println("resource1: " + resource1);
-			System.out.println("resource1.exists(): " + resource1.exists());
+			{
+				Resource resource = new ClassPathResource(
+						getClass().getPackage().getName().replace('.', '/') + '/' + "someResource",
+						getClass().getClassLoader());
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
 
 			System.out.println();
 
-			Resource resource2 = new ClassPathResource("someFile.properties", getClass().getClassLoader());
-			System.out.println("resource2: " + resource2);
-			System.out.println("resource2.exists(): " + resource2.exists());
+			{
+				Resource resource = new ClassPathResource("java/lang/String.class", getClass().getClassLoader());
+				System.out.println("resource: " + resource);
+				System.out.println("resource.exists(): " + resource.exists());
+			}
 		}
 
 		System.out.println();
@@ -386,41 +389,28 @@ public class Introduction {
 		}
 	}
 
+	/**
+	 * Test the class FileSystemResource.
+	 */
 	private void testFileSystemResource() {
-		// =====================================================================
-		// FileSystemResource (org.springframework.core.io.FileSystemResource)
-		// =====================================================================
-		{
-
-		}
 	}
 
+	/**
+	 * Test the class ServletContextResource.
+	 */
 	private void testServletContextResource() {
-		// =====================================================================
-		// ServletContextResource
-		// (org.springframework.web.context.support.ServletContextResource)
-		// =====================================================================
-		{
-
-		}
 	}
 
+	/**
+	 * Test the class InputStreamResource.
+	 */
 	private void testInputStreamResource() {
-		// =====================================================================
-		// InputStreamResource (org.springframework.core.io.InputStreamResource)
-		// =====================================================================
-		{
-
-		}
 	}
 
+	/**
+	 * Test the class ByteArrayResource.
+	 */
 	private void testByteArrayResource() {
-		// =====================================================================
-		// ByteArrayResource (org.springframework.core.io.ByteArrayResource)
-		// =====================================================================
-		{
-
-		}
 	}
 
 	public static void main(String[] args) {
