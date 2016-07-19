@@ -1,13 +1,33 @@
 package com.raychen518.study.spring.core.resources.builtinresourceimplementations;
 
+import java.io.File;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Enumeration;
+import java.util.EventListener;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterRegistration;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
+import javax.servlet.ServletRegistration.Dynamic;
+import javax.servlet.SessionCookieConfig;
+import javax.servlet.SessionTrackingMode;
+import javax.servlet.descriptor.JspConfigDescriptor;
 
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.web.context.support.ServletContextResource;
 
 import com.raychen518.study.spring.util.Utils;
 
@@ -83,20 +103,25 @@ import com.raychen518.study.spring.util.Utils;
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * FileSystemResource (org.springframework.core.io.FileSystemResource)
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- * XXX.
+ * FileSystemResource is a class representing a file system resource.
  * It has main public fields/methods as follows.
  * Fields/Methods											Description
  * ---------------------------------------------------------------------------------------------------------------------
- * XXX														XXX
+ * public FileSystemResource(String path) {...}				Create a new FileSystemResource from a file path.
+ * public FileSystemResource(File file) {...}				Create a new FileSystemResource from a File handle.
+ * public final String getPath() {...}						Return the file path for this resource.
  * 
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * ServletContextResource (org.springframework.web.context.support.ServletContextResource)
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- * XXX.
+ * ServletContextResource is a class representing a servlet context resource.
  * It has main public fields/methods as follows.
  * Fields/Methods											Description
  * ---------------------------------------------------------------------------------------------------------------------
- * XXX														XXX
+ * public ServletContextResource(ServletContext servletContext, String path) {...}
+ * 															Create a new ServletContextResource.
+ * public final String getPath() {...}						Return the path for this resource.
+ * public final ServletContext getServletContext() {...}	Return the ServletContext for this resource.
  * 
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * InputStreamResource (org.springframework.core.io.InputStreamResource)
@@ -121,24 +146,16 @@ import com.raychen518.study.spring.util.Utils;
  */
 public class Introduction {
 
-	private static final String URL_RESOURCE_URL_PATH_HTTP = "http://en.wikipedia.org/wiki/Main_Page";
-	private static final String URL_RESOURCE_URL_PATH_FTP = "ftp://ftp.cuhk.hk/";
-	private static final String URL_RESOURCE_URL_PATH_FILE = "file:///d:/temp/temp.txt";
-	private static final String URL_RESOURCE_URL_PROTOCOL_HTTP = "http";
-	private static final String URL_RESOURCE_URL_LOCATION_1 = "//en.wikipedia.org/wiki/Main_Page";
-	private static final String URL_RESOURCE_URL_LOCATION_2 = "//en.wikipedia.org/wiki/Wikipedia";
-	private static final String URL_RESOURCE_URL_FRAGMENT = "History";
-
 	private void test() {
-		testUrlResource();
+		// testUrlResource();
 
 		Utils.printDelimiterLine();
 
-		testClassPathResource();
+		// testClassPathResource();
 
 		Utils.printDelimiterLine();
 
-		testFileSystemResource();
+		// testFileSystemResource();
 
 		Utils.printDelimiterLine();
 
@@ -163,7 +180,7 @@ public class Introduction {
 		{
 			// HTTP Resource
 			try {
-				Resource resource = new UrlResource(URL_RESOURCE_URL_PATH_HTTP);
+				Resource resource = new UrlResource("http://en.wikipedia.org/wiki/Main_Page");
 				System.out.println("resource: " + resource);
 				System.out.println("resource.exists(): " + resource.exists());
 			} catch (MalformedURLException e) {
@@ -174,7 +191,7 @@ public class Introduction {
 
 			// FTP Resource
 			try {
-				Resource resource = new UrlResource(URL_RESOURCE_URL_PATH_FTP);
+				Resource resource = new UrlResource("ftp://ftp.cuhk.hk/");
 				System.out.println("resource: " + resource);
 				System.out.println("resource.exists(): " + resource.exists());
 			} catch (MalformedURLException e) {
@@ -185,7 +202,7 @@ public class Introduction {
 
 			// File Resource
 			try {
-				Resource resource = new UrlResource(URL_RESOURCE_URL_PATH_FILE);
+				Resource resource = new UrlResource("file:///d:/temp/temp.txt");
 				System.out.println("resource: " + resource);
 				System.out.println("resource.exists(): " + resource.exists());
 			} catch (MalformedURLException e) {
@@ -200,7 +217,7 @@ public class Introduction {
 		// -------------------------------------------------
 		{
 			try {
-				Resource resource = new UrlResource(new URL(URL_RESOURCE_URL_PATH_HTTP));
+				Resource resource = new UrlResource(new URL("http://en.wikipedia.org/wiki/Main_Page"));
 				System.out.println("resource: " + resource);
 				System.out.println("resource.exists(): " + resource.exists());
 			} catch (MalformedURLException e) {
@@ -215,7 +232,7 @@ public class Introduction {
 		// -------------------------------------------------
 		{
 			try {
-				Resource resource = new UrlResource(new URI(URL_RESOURCE_URL_PATH_HTTP));
+				Resource resource = new UrlResource(new URI("http://en.wikipedia.org/wiki/Main_Page"));
 				System.out.println("resource: " + resource);
 				System.out.println("resource.exists(): " + resource.exists());
 			} catch (MalformedURLException | URISyntaxException e) {
@@ -231,7 +248,7 @@ public class Introduction {
 		// -------------------------------------------------
 		{
 			try {
-				Resource resource = new UrlResource(URL_RESOURCE_URL_PROTOCOL_HTTP, URL_RESOURCE_URL_LOCATION_1);
+				Resource resource = new UrlResource("http", "//en.wikipedia.org/wiki/Main_Page");
 				System.out.println("resource: " + resource);
 				System.out.println("resource.exists(): " + resource.exists());
 			} catch (MalformedURLException e) {
@@ -247,8 +264,7 @@ public class Introduction {
 		// -------------------------------------------------
 		{
 			try {
-				Resource resource = new UrlResource(URL_RESOURCE_URL_PROTOCOL_HTTP, URL_RESOURCE_URL_LOCATION_2,
-						URL_RESOURCE_URL_FRAGMENT);
+				Resource resource = new UrlResource("http", "//en.wikipedia.org/wiki/Wikipedia", "History");
 				System.out.println("resource: " + resource);
 				System.out.println("resource.exists(): " + resource.exists());
 			} catch (MalformedURLException e) {
@@ -393,12 +409,306 @@ public class Introduction {
 	 * Test the class FileSystemResource.
 	 */
 	private void testFileSystemResource() {
+		// -------------------------------------------------
+		// public FileSystemResource(String path) {...}
+		// public final String getPath() {...}
+		// -------------------------------------------------
+		{
+			FileSystemResource resource = new FileSystemResource("d:\\temp\\temp.txt");
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+			System.out.println("resource.getPath(): " + resource.getPath());
+		}
+
+		System.out.println();
+
+		{
+			FileSystemResource resource = new FileSystemResource("temp.txt");
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public FileSystemResource(File file) {...}
+		// -------------------------------------------------
+		{
+			FileSystemResource resource = new FileSystemResource(new File("d:\\temp\\temp.txt"));
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+		}
 	}
 
 	/**
 	 * Test the class ServletContextResource.
 	 */
 	private void testServletContextResource() {
+		// -------------------------------------------------
+		// public ServletContextResource(ServletContext servletContext, String
+		// path) {...}
+		// public final String getPath() {...}
+		// public final ServletContext getServletContext() {...}
+		// -------------------------------------------------
+		{
+			ServletContextResource resource = new ServletContextResource(mockServletContext(), "someUrlLocation");
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+			System.out.println("resource.getPath(): " + resource.getPath());
+			System.out.println("resource.getServletContext(): " + resource.getServletContext());
+		}
+	}
+
+	private static ServletContext mockServletContext() {
+		return new ServletContext() {
+
+			@Override
+			public String getContextPath() {
+				return null;
+			}
+
+			@Override
+			public ServletContext getContext(String uripath) {
+				return null;
+			}
+
+			@Override
+			public int getMajorVersion() {
+				return 0;
+			}
+
+			@Override
+			public int getMinorVersion() {
+				return 0;
+			}
+
+			@Override
+			public int getEffectiveMajorVersion() {
+				return 0;
+			}
+
+			@Override
+			public int getEffectiveMinorVersion() {
+				return 0;
+			}
+
+			@Override
+			public String getMimeType(String file) {
+				return null;
+			}
+
+			@Override
+			public Set<String> getResourcePaths(String path) {
+				return null;
+			}
+
+			@Override
+			public URL getResource(String path) throws MalformedURLException {
+				return new URL(path);
+			}
+
+			@Override
+			public InputStream getResourceAsStream(String path) {
+				return null;
+			}
+
+			@Override
+			public RequestDispatcher getRequestDispatcher(String path) {
+				return null;
+			}
+
+			@Override
+			public RequestDispatcher getNamedDispatcher(String name) {
+				return null;
+			}
+
+			@Override
+			public Servlet getServlet(String name) throws ServletException {
+				return null;
+			}
+
+			@Override
+			public Enumeration<Servlet> getServlets() {
+				return null;
+			}
+
+			@Override
+			public Enumeration<String> getServletNames() {
+				return null;
+			}
+
+			@Override
+			public void log(String msg) {
+			}
+
+			@Override
+			public void log(Exception exception, String msg) {
+			}
+
+			@Override
+			public void log(String message, Throwable throwable) {
+			}
+
+			@Override
+			public String getRealPath(String path) {
+				return null;
+			}
+
+			@Override
+			public String getServerInfo() {
+				return null;
+			}
+
+			@Override
+			public String getInitParameter(String name) {
+				return null;
+			}
+
+			@Override
+			public Enumeration<String> getInitParameterNames() {
+				return null;
+			}
+
+			@Override
+			public boolean setInitParameter(String name, String value) {
+				return false;
+			}
+
+			@Override
+			public Object getAttribute(String name) {
+				return null;
+			}
+
+			@Override
+			public Enumeration<String> getAttributeNames() {
+				return null;
+			}
+
+			@Override
+			public void setAttribute(String name, Object object) {
+			}
+
+			@Override
+			public void removeAttribute(String name) {
+			}
+
+			@Override
+			public String getServletContextName() {
+				return null;
+			}
+
+			@Override
+			public Dynamic addServlet(String servletName, String className) {
+				return null;
+			}
+
+			@Override
+			public Dynamic addServlet(String servletName, Servlet servlet) {
+				return null;
+			}
+
+			@Override
+			public Dynamic addServlet(String servletName, Class<? extends Servlet> servletClass) {
+				return null;
+			}
+
+			@Override
+			public <T extends Servlet> T createServlet(Class<T> clazz) throws ServletException {
+				return null;
+			}
+
+			@Override
+			public ServletRegistration getServletRegistration(String servletName) {
+				return null;
+			}
+
+			@Override
+			public Map<String, ? extends ServletRegistration> getServletRegistrations() {
+				return null;
+			}
+
+			@Override
+			public javax.servlet.FilterRegistration.Dynamic addFilter(String filterName, String className) {
+				return null;
+			}
+
+			@Override
+			public javax.servlet.FilterRegistration.Dynamic addFilter(String filterName, Filter filter) {
+				return null;
+			}
+
+			@Override
+			public javax.servlet.FilterRegistration.Dynamic addFilter(String filterName,
+					Class<? extends Filter> filterClass) {
+				return null;
+			}
+
+			@Override
+			public <T extends Filter> T createFilter(Class<T> clazz) throws ServletException {
+				return null;
+			}
+
+			@Override
+			public FilterRegistration getFilterRegistration(String filterName) {
+				return null;
+			}
+
+			@Override
+			public Map<String, ? extends FilterRegistration> getFilterRegistrations() {
+				return null;
+			}
+
+			@Override
+			public SessionCookieConfig getSessionCookieConfig() {
+				return null;
+			}
+
+			@Override
+			public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes) {
+			}
+
+			@Override
+			public Set<SessionTrackingMode> getDefaultSessionTrackingModes() {
+				return null;
+			}
+
+			@Override
+			public Set<SessionTrackingMode> getEffectiveSessionTrackingModes() {
+				return null;
+			}
+
+			@Override
+			public void addListener(String className) {
+			}
+
+			@Override
+			public <T extends EventListener> void addListener(T t) {
+			}
+
+			@Override
+			public void addListener(Class<? extends EventListener> listenerClass) {
+			}
+
+			@Override
+			public <T extends EventListener> T createListener(Class<T> clazz) throws ServletException {
+				return null;
+			}
+
+			@Override
+			public JspConfigDescriptor getJspConfigDescriptor() {
+				return null;
+			}
+
+			@Override
+			public ClassLoader getClassLoader() {
+				return null;
+			}
+
+			@Override
+			public void declareRoles(String... roleNames) {
+			}
+
+		};
 	}
 
 	/**
