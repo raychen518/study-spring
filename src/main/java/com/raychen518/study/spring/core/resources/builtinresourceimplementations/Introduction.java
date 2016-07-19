@@ -1,11 +1,13 @@
 package com.raychen518.study.spring.core.resources.builtinresourceimplementations;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.EventListener;
 import java.util.Map;
@@ -23,8 +25,10 @@ import javax.servlet.SessionCookieConfig;
 import javax.servlet.SessionTrackingMode;
 import javax.servlet.descriptor.JspConfigDescriptor;
 
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.web.context.support.ServletContextResource;
@@ -126,36 +130,49 @@ import com.raychen518.study.spring.util.Utils;
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * InputStreamResource (org.springframework.core.io.InputStreamResource)
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- * XXX.
+ * InputStreamResource is a class representing an input stream resource.
+ * In contrast to other Resource implementations, this class is a descriptor for an already opened resource.
+ * Thus the isOpen() method always returns true for this class,
+ * and do not use this class if the resource descriptor will be kept somewhere or the resource will be read multiple times.
+ * This Resource implementation should only be used if no other Resource implementation is applicable.
+ * Normally, the ByteArrayResource class or other file-based Resource implementations should be used instead.
  * It has main public fields/methods as follows.
  * Fields/Methods											Description
  * ---------------------------------------------------------------------------------------------------------------------
- * XXX														XXX
+ * public InputStreamResource(InputStream inputStream) {...}
+ * 															Create a new InputStreamResource.
+ * public InputStreamResource(InputStream inputStream, String description) {...}
+ * 															Create a new InputStreamResource.
  * 
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * ByteArrayResource (org.springframework.core.io.ByteArrayResource)
  * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- * XXX.
+ * ByteArrayResource is a class representing a byte array resource.
+ * It is useful for loading content from any given byte array, without having to resort to a single-use InputStreamResource.
+ * It is particularly useful for creating mail attachments from local content,
+ * where JavaMail needs to be able to read the stream multiple times.
  * It has main public fields/methods as follows.
  * Fields/Methods											Description
  * ---------------------------------------------------------------------------------------------------------------------
- * XXX														XXX
- * 
+ * public ByteArrayResource(byte[] byteArray) {...}			Create a new ByteArrayResource.
+ * public ByteArrayResource(byte[] byteArray, String description) {...}
+ * 															Create a new ByteArrayResource.
+ * public final byte[] getByteArray() {...}					Return the underlying byte array.
  * 
  * </pre>
  */
 public class Introduction {
 
 	private void test() {
-		// testUrlResource();
+		testUrlResource();
 
 		Utils.printDelimiterLine();
 
-		// testClassPathResource();
+		testClassPathResource();
 
 		Utils.printDelimiterLine();
 
-		// testFileSystemResource();
+		testFileSystemResource();
 
 		Utils.printDelimiterLine();
 
@@ -459,6 +476,66 @@ public class Introduction {
 		}
 	}
 
+	/**
+	 * Test the class InputStreamResource.
+	 */
+	private void testInputStreamResource() {
+		// -------------------------------------------------
+		// public InputStreamResource(InputStream inputStream) {...}
+		// -------------------------------------------------
+		{
+			InputStream inputStream = new ByteArrayInputStream("Hello, World!".getBytes());
+			InputStreamResource resource = new InputStreamResource(inputStream);
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+			System.out.println("resource.isOpen(): " + resource.isOpen());
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public InputStreamResource(InputStream inputStream, String
+		// description) {...}
+		// -------------------------------------------------
+		{
+			InputStream inputStream = new ByteArrayInputStream("Hello, World!".getBytes());
+			InputStreamResource resource = new InputStreamResource(inputStream,
+					"The input stream comes from a string literal.");
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+			System.out.println("resource.getDescription(): " + resource.getDescription());
+		}
+	}
+
+	/**
+	 * Test the class ByteArrayResource.
+	 */
+	private void testByteArrayResource() {
+		// -------------------------------------------------
+		// public ByteArrayResource(byte[] byteArray) {...}
+		// public final byte[] getByteArray() {...}
+		// -------------------------------------------------
+		{
+			ByteArrayResource resource = new ByteArrayResource("Hello, World!".getBytes());
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+			System.out.println("Arrays.toString(resource.getByteArray()): " + Arrays.toString(resource.getByteArray()));
+		}
+
+		System.out.println();
+
+		// -------------------------------------------------
+		// public ByteArrayResource(byte[] byteArray, String description) {...}
+		// -------------------------------------------------
+		{
+			ByteArrayResource resource = new ByteArrayResource("Hello, World!".getBytes(),
+					"The byte array comes from a string literal.");
+			System.out.println("resource: " + resource);
+			System.out.println("resource.exists(): " + resource.exists());
+			System.out.println("resource.getDescription(): " + resource.getDescription());
+		}
+	}
+
 	private static ServletContext mockServletContext() {
 		return new ServletContext() {
 
@@ -709,18 +786,6 @@ public class Introduction {
 			}
 
 		};
-	}
-
-	/**
-	 * Test the class InputStreamResource.
-	 */
-	private void testInputStreamResource() {
-	}
-
-	/**
-	 * Test the class ByteArrayResource.
-	 */
-	private void testByteArrayResource() {
 	}
 
 	public static void main(String[] args) {
