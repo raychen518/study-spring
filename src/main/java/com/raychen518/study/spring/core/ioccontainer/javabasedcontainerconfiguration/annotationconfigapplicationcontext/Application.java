@@ -10,33 +10,38 @@ import com.raychen518.study.spring.util.Utils;
 /**
  * <pre>
  * - ApplicationContext Hierarchy
- *  Package: org.springframework.context
- *  ============================================================================
- *  ApplicationContext (Interface)
- *  	ConfigurableApplicationContext (Interface)
- *  		AbstractApplicationContext (Class)
- *  			AbstractRefreshableApplicationContext (Class)
- *  				AbstractRefreshableConfigApplicationContext (Class)
- *  					AbstractXmlApplicationContext (Class)
- *  						####################################################
- *  						ClassPathXmlApplicationContext (Class)
- *  						####################################################
- *  						FileSystemXmlApplicationContext (Class)
- *  					AbstractRefreshableWebApplicationContext (Class)
- *  						####################################################
- *  						AnnotationConfigWebApplicationContext (Class)
- *  						####################################################
- *  						GroovyWebApplicationContext (Class)
- *  						XmlWebApplicationContext (Class)
- *  			GenericApplicationContext (Class)
- *  				############################################################
- *  				AnnotationConfigApplicationContext (Class)
- *  				############################################################
- *  				GenericGroovyApplicationContext (Class)
- *  				GenericXmlApplicationContext (Class)
- *  				StaticApplicationContext (Class)
- *  ============================================================================
- *  
+ *   Package: org.springframework.context
+ *   Package: org.springframework.web.context
+ *   ===========================================================================
+ *   ApplicationContext (Interface)
+ *   	ConfigurableApplicationContext (Interface)
+ *   		AbstractApplicationContext (Abstract Class)
+ *   			AbstractRefreshableApplicationContext (Abstract Class)
+ *   				AbstractRefreshableConfigApplicationContext (Abstract Class)
+ *   					AbstractRefreshableWebApplicationContext (Abstract Class)
+ *   						<See Below>
+ *   					AbstractXmlApplicationContext (Abstract Class)
+ *   						ClassPathXmlApplicationContext (Class)				<COMMONLY USED>
+ *   						FileSystemXmlApplicationContext (Class)				<COMMONLY USED>
+ *   			GenericApplicationContext (Class)
+ *   				AnnotationConfigApplicationContext (Class)					<COMMONLY USED>
+ *   				GenericGroovyApplicationContext (Class)
+ *   				GenericWebApplicationContext (Class)
+ *   				GenericXmlApplicationContext (Class)
+ *   				StaticApplicationContext (Class)
+ *   					StaticWebApplicationContext (Class)
+ *   		ConfigurableWebApplicationContext (Interface)
+ *   			<See Below>
+ *   	WebApplicationContext (Interface)
+ *   		ConfigurableWebApplicationContext (Interface)
+ *   			AbstractRefreshableWebApplicationContext (Abstract Class)
+ *   				AnnotationConfigWebApplicationContext (Class)				<COMMONLY USED>
+ *   				GroovyWebApplicationContext (Class)
+ *   				XmlWebApplicationContext (Class)
+ *   			GenericWebApplicationContext (Class)
+ *   			StaticWebApplicationContext (Class)
+ *   ===========================================================================
+ * 
  * - AnnotationConfigApplicationContext VS ClassPathXmlApplicationContext
  *  Implementation							Instantiation															Input
  *  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
