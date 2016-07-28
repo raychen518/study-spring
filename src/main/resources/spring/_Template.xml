@@ -10,7 +10,7 @@
 						http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- ======================================== -->
-	<!-- The <context:xxx> Elements -->
+	<!-- The <context> Elements -->
 	<!-- ======================================== -->
 	<!-- Note: The namespace "context" should be specified for this kind of -->
 	<!-- elements to take effect. -->
@@ -43,7 +43,7 @@
 	<context:load-time-weaver />
 
 	<!-- ======================================== -->
-	<!-- The <tx:xxx> Elements -->
+	<!-- The <tx> Elements -->
 	<!-- ======================================== -->
 	<!-- Note: The namespace "tx" should be specified for this kind of -->
 	<!-- elements to take effect. -->
